@@ -9,6 +9,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import com.example.login.preference.App
+
 
 class MainActivity : AppCompatActivity() {
     val TAG: String = "MainActivity"
@@ -23,12 +25,19 @@ class MainActivity : AppCompatActivity() {
         var edit_pw : EditText = findViewById(R.id.edit_pw)
         var btn_register : Button = findViewById(R.id.btn_register)
 
+        // 아이디 저장
+        edit_id.setText(App.prefs.myEditText)
+
         // 로그인 버튼
         btn_login.setOnClickListener {
 
             //editText로부터 입력된 값을 받아온다
             var id = edit_id.text.toString()
             var pw = edit_pw.text.toString()
+
+            // preference를 이용한 자동? 로그인
+
+            App.prefs.myEditText = edit_id.text.toString()
 
             // 쉐어드로부터 저장된 id, pw 가져오기
             val sharedPreference = getSharedPreferences("file name", Context.MODE_PRIVATE)
@@ -51,6 +60,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
+
+
 
 
 
@@ -89,4 +100,8 @@ class MainActivity : AppCompatActivity() {
         dialog.setPositiveButton("확인",dialog_listener)
         dialog.show()
     }
+
+
+
+
 }

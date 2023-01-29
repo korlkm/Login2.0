@@ -10,6 +10,7 @@ class Home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+
         val homeFragment = HomeFragment()
         val chattingFragment = ChatFragment()
         val myPageFragment = SettingFragment()
